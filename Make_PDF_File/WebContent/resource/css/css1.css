@@ -1,0 +1,15 @@
+body {
+    font-family: MalgunGothic;
+    position: static;
+}
+
+.customer {
+    padding-top: 30px;
+    font-weight:bold;
+}
+
+.amount {
+	position: relative;
+	top: 100px;
+	left: 100px;
+}
