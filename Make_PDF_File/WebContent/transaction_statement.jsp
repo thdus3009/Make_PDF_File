@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import = "java.util.Calendar" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,11 +13,13 @@
 
 	<!-- 원래는 DB에 정보가져와서 pdf출력해야하는데,
 	 없으니까 임의의 값을 넣어서 테스트 해보기 / 버튼클릭 > 출력 -->
-	 
+	 <%Calendar cal = Calendar.getInstance();%>
 	 <p>DB에서 정보를 받아오기전에 여기에 입력해서 제대로 pdf 출력되는지 Test</p>
-	 날짜: <input class="date" type="text"></input>
+	 날짜: <input class="date" type="text" value="<%= cal.get(Calendar.YEAR) %>년 <%= cal.get(Calendar.MONTH)+1 %>월 <%= cal.get(Calendar.DATE) %>일"></input>
 	 <br>
 	 고객명: <input class="customer" type="text"></input>
+	 <br>
+	 기간: <input class="term" type="text"></input>
 	 <br>
 	 수량: <input class="amount" type="text"></input>
 	 <br>
@@ -37,30 +40,32 @@
 	<script type="text/javascript">
 		function test(){
 
-			//pdf내용	
- 			var html = "<html>" +
+/* 			var html = "<html>" +
 			"<head></head>" +
 			"<body>" +
 			"<div class=\"date\">"+$(".date").val()+"</div>" +
 			"<div class=\"customer\">"+$(".customer").val()+" 귀하</div>" +
 			"<div></div>"+
 			"</body>" +
-			"</html>";
+			"</html>"; */
 			
 			var date = $(".date").val();
 			var customer = $(".customer").val();
+			var term = $(".term").val();
 			var amount = $(".amount").val();
 			var price = $(".price").val();
-			var tax = $(".price").val()/10;
 			
-			console.log(price);
-			console.log(tax);
 			
 			var data = JSON.stringify({
-				"html" : html
+				"date" : date,
+				"customer" : customer,
+				"term" : term,
+				"amount" : amount,
+				"price" : price
 			}) 	
 
-			var url = "/Make_PDF_File/test.p"
+			var url = "/Make_PDF_File/test.p";
+			
 			$.ajax({
 				type : "POST",
 				dataType : "json",
@@ -69,11 +74,11 @@
 				url : url,
 				success : function(dboj){
 					console.log(dboj.html);
-					$(".date").val("");
 					$(".customer").val("");
+					$(".term").val("");
 					$(".amount").val("");
 					$(".price").val("");
-					
+					alert("pdf다운로드 완료");
 				},
 				error : function(e){
 					alert("ERROR!(?) : " + e);

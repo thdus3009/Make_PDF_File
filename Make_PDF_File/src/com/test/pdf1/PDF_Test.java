@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.StringReader;
 import java.nio.charset.Charset;
+import java.text.DecimalFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -63,13 +64,37 @@ public class PDF_Test extends HttpServlet{
 			JsonElement xjson = parser.parse(data); //String > json		
 			JsonObject reg = xjson.getAsJsonObject(); //json > jsonObject
 
+			//숫자에 콤마 찍기
+			DecimalFormat formatter = new DecimalFormat("###,###");
 			
 			// html 코드
-			String html = reg.get("html").getAsString();
-
+			String date = reg.get("date").getAsString();
+			String customer = reg.get("customer").getAsString();
+			int term = Integer.parseInt(reg.get("term").getAsString());
+			int amount = Integer.parseInt(reg.get("amount").getAsString());
+			int price1 = Integer.parseInt(reg.get("price").getAsString());
+			int price2 = price1*amount*term;
+			int tax = price2/10;
+			int sum = (price2+tax);
+			
+			String html = "<html>" +
+					"<head></head>" +
+					"<body>" +
+					"<div class=\"date\">"+date+"</div>" +
+					"<div class=\"customer\">"+customer+" 귀하</div>" +
+					"<div class=\"sm sum\" style=\"font-weight:bold;\">\\ "+formatter.format(sum)+"</div>"+
+					"<div class=\"sm term\">"+term+"</div>"+ //기간
+					"<div class=\"sm amount\">"+amount+"</div>"+ //수량
+					"<div class=\"sm price1\">"+formatter.format(price1)+"</div>"+ //단가
+					"<div class=\"sm price2\">"+formatter.format(price2)+"</div>"+ //공급가
+					"<div class=\"sm tax\">"+formatter.format(tax)+"</div>"+ //세액
+					"<div class=\"sm price22\">"+formatter.format(price2)+"</div>"+
+					"<div class=\"sm taxx\">"+formatter.format(tax)+"</div>"+
+					"</body>" +
+					"</html>";
 
 			// pdf 이름
-			String s = "test_pdf";
+			String s = "갤러리360_거래명세서";
 			try (FileOutputStream os = new FileOutputStream("d:\\Work\\"+s+".pdf")) {
 				// Pdf형식의 document를 생성한다.
 				Document document = new Document(PageSize.A4, 70, 50, 120, 50); //좌 우 상 하

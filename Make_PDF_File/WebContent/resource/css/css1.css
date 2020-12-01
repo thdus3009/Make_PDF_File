@@ -1,6 +1,5 @@
 body {
     font-family: MalgunGothic;
-    position: static;
 }
 
 .customer {
@@ -8,8 +7,53 @@ body {
     font-weight:bold;
 }
 
-.amount {
+.sm {
+	font-size: small;
+}
+
+
+
+.sum {
+	position: relative;
+	top: 71px; /* 136 */
+	left: 400px;
+}
+
+.term {
+	position: relative;
+	top: 118px;
+	left: 198px;
+}
+
+ .amount {
 	position: relative;
 	top: 100px;
-	left: 100px;
+	left: 250px;
 }
+  .price1 {
+	position: relative;
+	top: 81px;
+	left: 300px;
+}
+.price2 {
+	position: relative;
+	top: 63px;
+	left: 400px;
+}
+.tax {
+	position: relative;
+	top: 45px;
+	left: 543px;
+}  
+
+.price22 {
+	position: relative;
+	top: 574px;
+	left: 400px;
+}
+.taxx {
+	position: relative;
+	top: 556px;
+	left: 543px;
+}  
+
