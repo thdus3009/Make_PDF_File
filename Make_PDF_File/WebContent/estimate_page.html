@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <title>자동 견적 및 결제</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="Gallery360">
+    <meta name="description" content="Gallery360">
+    <meta name="author" content="Gallery360">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0, user-scalable=yes">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+    <!-- js -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+    <script src="../js/jquery-ui-1.12.1.js"></script>
+    <!-- 연결시 동작 안함 <script src="../js/jquery-3.3.1.min.js"></script> -->
+   
+   
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="https://www.gallery360.co.kr/resource/css/library.css?open?ver=9.10">
+    <link rel="stylesheet" type="text/css" href="https://www.gallery360.co.kr/resource/css/jquery-ui.css?open?ver=9.10">
+    <link rel="stylesheet" type="text/css" href="https://www.gallery360.co.kr/resource/css/home/style.css?open?ver=9.10">
+    <link rel="stylesheet" type="text/css" href="https://www.gallery360.co.kr/resource/css/base.css?open?ver=9.10">
+    <link rel="stylesheet" type="text/css" href="https://www.gallery360.co.kr/resource/css/common.css?open?ver=9.10">
+    <link rel="stylesheet" href="https://www.gallery360.co.kr/resource/css/partner/request.css?open?ver=9.10">
+    <link rel="stylesheet" href="https://www.gallery360.co.kr/resource/css/partner/deco.css?open?ver=9.10">
+    <link rel="stylesheet" href="https://www.gallery360.co.kr/resource/css/partner/account.css?open?ver=1.0">
+    <link rel="stylesheet" href="https://www.gallery360.co.kr/resource/css/partner/vrscreen.css?open?ver=1.0">
+    
+    <style>
+        /*layout controls*/
+        .estimate-wrap{
+            max-width: 880px;margin: 0 auto;
+            margin-bottom: 20px;
+            border: 1px solid #b7b5b5;
+            border-radius: 3px;
+            background: #fff;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+        .estimate-wrap .estimate-header{
+            width: 100%;
+            border-bottom: 1px solid #b7b5b5;
+        }
+        .estimate-wrap .estimate-header h3{
+            font-size: 20px;line-height: 54px;
+            text-indent: 20px;
+        }
+        .estimate-wrap .estimate-con{
+            width:100%;
+            border-bottom: 1px solid #b7b5b5;
+        }
+        .estimate-wrap>div:last-child{
+            font-size: 16px;
+            margin: 20px 0 50px 40px;
+            border-bottom: none;
+        }
+        
+        .estimate-btn{
+            width: 250px;height: 45px;
+            text-align: center;line-height: 43px;
+            font-size: 18px;
+            font-weight: 300;
+            border: 1px solid #111;
+            border-radius: 3px;
+            transition: all 0.3s ease 0s;
+            cursor: pointer;
+        }
+        .estimate-btn:hover{
+            background: #111;
+            color:#fff;
+        }
+        
+        /*자동 견적 내기*/
+        .esti-auto>p{
+            font-size: 16px;
+            margin: 20px 0 20px 40px;
+            line-height: 24px;
+        }
+        .esti-auto p:nth-child(2) span{
+            font-size: 20px;margin-right: 15px;
+        }
+        
+        .work-size-table{
+            width:650px;margin: 50px auto 50px;
+        }
+        .work-size-table p{
+            font-size: 16px;text-align: center;
+        }
+        .work-size-table .size-amount{
+            width:600px;
+            margin: 15px auto 40px;
+            text-align: center;
+        }
+        
+        .size-amount tr th{
+            height: 80px;width: 25%;
+            font-size: 18px;font-weight: 300;
+            border: 1px solid #111;
+        }
+        .size-amount tr th span{
+            font-size: 14px;font-weight: 300;
+        }
+        .size-amount tr td{
+            font-size: 16px;line-height: 50px;
+            border: 1px solid #111;
+        }
+        
+        
+        .rent-calculate{
+            width:100%;height: 150px;margin: 0 auto;
+            background: #eee;border-radius: 3px;
+        }
+        .rent-calculate .auto-cal{
+            width: 400px;height: 100%; float: left;
+            text-align: center;font-size: 24px;
+            padding: 30px 0;
+            color: #444;
+        }
+        
+        .rent-calculate .auto-cal input{
+            border: none;width:50px;
+            border-bottom: 1px solid #444;
+            margin-right: 5px;text-align: center;
+            background: none;color:#674eec;
+        }
+        .rent-calculate .auto-cal input:nth-child(1){margin-left: 0}
+        
+        .rent-calculate .auto-cal input::placeholder{
+            background: none;
+            color:#ccc;
+            text-align: center
+        }
+        .rent-calculate .auto-cal .estimate-btn-nb{
+            font-size: 20px;line-height: 40px;
+            margin-top: 20px;text-decoration-line: underline;
+            cursor: pointer;transition: all 0.3s ease 0s;
+        }
+        
+        .rent-calculate .auto-cal .estimate-btn-nb:hover{
+            text-decoration-line: none;font-weight: 500;
+            color:#674eec;
+        }
+        
+        .rent-calculate .estimate-price{
+            width:200px;height: 150px; float: right;
+            font-size: 20px;line-height: 42px;
+            text-align: center;font-weight: 300;
+            margin-top: 30px;margin-right: 30px;            
+        }
+        
+        .rent-calculate .estimate-price span{
+            font-size: 30px;line-height: 42px;
+            color: #674eec;font-weight: 500;
+        }
+        
+        .work-size-table .estimate-btn{
+            margin: 0 auto;margin-top: 40px;
+        }
+        
+        /*이용 요금 결제 안내*/
+        .estimate-transfer, .estimate-credit{margin: 20px 0 50px 40px;}
+        .estimate-transfer{height: 160px}
+        .estimate-credit{height: 118px}
+        
+        .estimate-transfer p, .estimate-credit p{font-size: 16px;}
+        .estimate-transfer>p, .estimate-credit>p{
+            height: 100%;float: left;
+            line-height: 42px;margin-right: 50px;
+        }
+        .transfer-txt p:nth-child(1){
+            font-size: 20px;line-height: 42px;
+        }
+        .transfer-txt p:nth-child(2){margin: 20px 0 30px;}
+        .credit-txt p{line-height: 42px;margin-bottom: 30px}
+        
+        
+        .transfer-txt .estimate-btn, .credit-txt .estimate-btn{float: left;}
+
+        
+        
+    </style>
+
+</head>
+
+
+<body>
+    <div class="estimate-wrap">
+        <div class="estimate-header">
+            <h3>자동 견적 내기</h3>
+        </div><!--estimate-header end-->
+        <div class="estimate-con esti-auto">
+            <p>
+                VR갤러리는 전시기획자가 원하는 대로 창의적인 전시가 가능합니다.<br/>
+                <br/>
+                처음 대관하시는 분들은 작품 크기와 작품 수량에 대한 안내를 읽어 보시고<br/>
+                필요하신 대관 개수를 입력하여 주세요.
+            </p>
+            <p>
+                VR갤러리의 가상공간은 대략 오프란인 전시공간 25~30평 규모로,<br/>
+                <span>&middot;</span>작품은 입력하는 값에 따라 크기 설정이 가능합니다.<br/>
+                <span>&middot;</span>작품 사이즈 50cm, 작품 이미지 해상도 1000px 이상 크기부터 이상적으로 잘 보입니다.<br/>
+                <span>&middot;</span>디스플레이 간격, 방식에 따라 차이가 발생할 수 있습니다.<br/>
+                <span>&middot;</span>하나의 가상공간 내에 너무 많은 작품을 전시하는 경우 로딩 속도가 느려질 수 있습니다.
+            </p>
+            <div class="work-size-table">
+                <p>&lt; 작품 사이즈 별 추천 작품 개수 &gt;</p>
+                <table class="size-amount">
+                    <thead>
+                        <tr>
+                            <th>8절지<br/><span>39 x 27cm</span></th>
+                            <th>25호<br/><span>80 x 65cm</span></th>
+                            <th>100호<br/><span>162 x 130cm</span></th>
+                            <th>300호<br/><span>290 x 220cm</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>35점</td>
+                            <td>15점</td>
+                            <td>11점</td>
+                            <td>5점</td>
+                        </tr>
+                    </tbody>
+                </table><!--size-amount end-->
+                <div class="rent-calculate">
+                    <div class="auto-cal">
+                        <input type="text" id="number_place" size="20" maxlength="3" placeholder="2" required>개관
+                        <input type="text" id="length_month" size="20" maxlength="3" placeholder="2" required>개월
+                        <div class="estimate-btn-nb">VR갤러리 대관 비용 확인하기</div>
+                    </div><!--auto-cal end-->
+                    <div class="estimate-price"><span>660,000</span>원<br/>(부가세 포함)</div>
+                </div><!--rent-calculate end-->
+                <div class="estimate-btn">견적서 다운로드</div>
+            </div><!--work-size-table end-->
+        </div><!--estimate-con .esti-auto end-->
+        <div class="estimate-header">
+            <h3>이용 요금 결제 안내</h3>
+        </div><!--estimate-header end-->
+        <div class="estimate-con">
+            <div class="estimate-transfer">
+                <p>계좌 이체</p>
+                <div class="transfer-txt">
+                    <p>입금 계좌: OO은행 000-0000-00000 갤러리360</p>
+                    <p>입금자 성함이 다른 경우에는 카카오톡으로 문의 남겨주세요.</p>
+                    <div class="estimate-btn">계좌 정보 다운로드</div>
+                </div><!--transfer-txt end-->
+            </div><!--estimate-transfer end-->
+            <div class="estimate-credit">
+                <p>계좌 이체</p>
+                <div class="credit-txt">
+                    <p>BC카드 및 국민카드를 제외한 신용카드 결제가 가능합니다.</p>
+                    <div class="estimate-btn">신용카드 결제하기</div>
+                </div><!--credit-txt end-->
+            </div><!--estimate-credit end-->
+        </div><!--estimate-con end-->
+        <div class="estimate-header">
+            <h3>결제 내역 확인</h3>
+        </div><!--estimate-header end-->
+        <div class="estimate-con">
+            <p>서비스 관리 페이지에서 이용 중인 서비스 내역을 확인하시고 필요한 증빙자료를 요청하실 수 있습니다.</p>
+        </div><!--estimate-con end-->
+    </div><!--estimate-wrap end-->
+</body>
+</html>

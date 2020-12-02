@@ -19,16 +19,16 @@
 	 <br>
 	 고객명: <input class="customer" type="text"></input>
 	 <br>
-	 기간: <input class="term" type="text"></input>
+	 *기간: <input class="term" type="text"></input>
 	 <br>
-	 수량: <input class="amount" type="text"></input>
+	 *수량: <input class="amount" type="text"></input>
 	 <br>
 	 단가: <input class="price" type="text"></input>
 	 <!-- 공급가액 : 단가*수량 -->
 	 <br>
 	<button onclick="test()">PDF 출력하기</button>
 	
-	
+	<button onclick="popup()">test</button>
 	
 	
 	
@@ -38,6 +38,12 @@
 	
 	<!-- javascript -->
 	<script type="text/javascript">
+	
+		function popup(){
+			
+		}
+	
+	
 		function test(){
 
 /* 			var html = "<html>" +

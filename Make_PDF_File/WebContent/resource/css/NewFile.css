@@ -1,0 +1,151 @@
+@CHARSET "UTF-8";
+
+/*layout controls*/
+        .estimate-wrap{
+            max-width: 880px;margin: 0 auto;
+            margin-bottom: 20px;
+            border: 1px solid #b7b5b5;
+            border-radius: 3px;
+            background: #fff;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+        .estimate-wrap .estimate-header{
+            width: 100%;
+            border-bottom: 1px solid #b7b5b5;
+        }
+        .estimate-wrap .estimate-header h3{
+            font-size: 20px;line-height: 54px;
+            text-indent: 20px;
+        }
+        .estimate-wrap .estimate-con{
+            width:100%;
+            border-bottom: 1px solid #b7b5b5;
+        }
+        .estimate-wrap>div:last-child{
+            font-size: 16px;
+            margin: 20px 0 50px 40px;
+            border-bottom: none;
+        }
+        
+        .estimate-btn{
+            width: 250px;height: 45px;
+            text-align: center;line-height: 43px;
+            font-size: 18px;
+            font-weight: 300;
+            border: 1px solid #111;
+            border-radius: 3px;
+            transition: all 0.3s ease 0s;
+            cursor: pointer;
+        }
+        .estimate-btn:hover{
+            background: #111;
+            color:#fff;
+        }
+        
+        /*자동 견적 내기*/
+        .esti-auto>p{
+            font-size: 16px;
+            margin: 20px 0 20px 40px;
+            line-height: 24px;
+        }
+        .esti-auto p:nth-child(2) span{
+            font-size: 20px;margin-right: 15px;
+        }
+        
+        .work-size-table{
+            width:650px;margin: 50px auto 50px;
+        }
+        .work-size-table p{
+            font-size: 16px;text-align: center;
+        }
+        .work-size-table .size-amount{
+            width:600px;
+            margin: 15px auto 40px;
+            text-align: center;
+        }
+        
+        .size-amount tr th{
+            height: 80px;width: 25%;
+            font-size: 18px;font-weight: 300;
+            border: 1px solid #111;
+        }
+        .size-amount tr th span{
+            font-size: 14px;font-weight: 300;
+        }
+        .size-amount tr td{
+            font-size: 16px;line-height: 50px;
+            border: 1px solid #111;
+        }
+        
+        
+        .rent-calculate{
+            width:100%;height: 150px;margin: 0 auto;
+            background: #eee;border-radius: 3px;
+        }
+        .rent-calculate .auto-cal{
+            width: 400px;height: 100%; float: left;
+            text-align: center;font-size: 24px;
+            padding: 30px 0;
+            color: #444;
+        }
+        
+        .rent-calculate .auto-cal input{
+            border: none;width:50px;
+            border-bottom: 1px solid #444;
+            margin-right: 5px;text-align: center;
+            background: none;color:#674eec;
+        }
+        .rent-calculate .auto-cal input:nth-child(1){margin-left: 0}
+        
+        .rent-calculate .auto-cal input::placeholder{
+            background: none;
+            color:#ccc;
+            text-align: center
+        }
+        .rent-calculate .auto-cal .estimate-btn-nb{
+            font-size: 20px;line-height: 40px;
+            margin-top: 20px;text-decoration-line: underline;
+            cursor: pointer;transition: all 0.3s ease 0s;
+        }
+        
+        .rent-calculate .auto-cal .estimate-btn-nb:hover{
+            text-decoration-line: none;font-weight: 500;
+            color:#674eec;
+        }
+        
+        .rent-calculate .estimate-price{
+            width:200px;height: 150px; float: right;
+            font-size: 20px;line-height: 42px;
+            text-align: center;font-weight: 300;
+            margin-top: 30px;margin-right: 30px;            
+        }
+        
+        .rent-calculate .estimate-price span{
+            font-size: 30px;line-height: 42px;
+            color: #674eec;font-weight: 500;
+        }
+        
+        .work-size-table .estimate-btn{
+            margin: 0 auto;margin-top: 40px;
+        }
+        
+        /*이용 요금 결제 안내*/
+        .estimate-transfer, .estimate-credit{margin: 20px 0 50px 40px;}
+        .estimate-transfer{height: 160px}
+        .estimate-credit{height: 118px}
+        
+        .estimate-transfer p, .estimate-credit p{font-size: 16px;}
+        .estimate-transfer>p, .estimate-credit>p{
+            height: 100%;float: left;
+            line-height: 42px;margin-right: 50px;
+        }
+        .transfer-txt p:nth-child(1){
+            font-size: 20px;line-height: 42px;
+        }
+        .transfer-txt p:nth-child(2){margin: 20px 0 30px;}
+        .credit-txt p{line-height: 42px;margin-bottom: 30px}
+        
+        
+        .transfer-txt .estimate-btn, .credit-txt .estimate-btn{float: left;}
+
+        
