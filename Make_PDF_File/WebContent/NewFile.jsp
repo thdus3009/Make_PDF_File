@@ -119,8 +119,14 @@
 $(document).ready(function() {
 	$('#savePdf').click(function() { // pdf저장 button id
 		
+		if($("#number_place").val()==""||$("#length_month").val()==""){
+			alert("견적하기 위한 개관과 개월 수를 입력해주세요.")
+		}else{
+			var newWindow = window.open('/Make_PDF_File/NewFile2.jsp','Estimate_Form','width=750,height=900,left=1000,top=1000')			
+		}
 		
- 	    html2canvas($('#pdfDiv')[0]).then(function(canvas) { //저장 영역 div id
+		
+/*  	    html2canvas($('#pdfDiv')[0]).then(function(canvas) { //저장 영역 div id
 	    	
 		   	var newWindow = window.open('/Make_PDF_File/NewFile2.jsp', 'test', 'width=750,height=900');	
 		    // 캔버스를 이미지로 변환
@@ -148,7 +154,7 @@ $(document).ready(function() {
 		    // 파일 저장
 		    doc.save('file-name1.pdf');
 
-		}); 
+		});  */
 
 	});
 	

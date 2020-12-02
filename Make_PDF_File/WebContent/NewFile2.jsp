@@ -33,6 +33,7 @@
 
 <div id="pdfDiv">
 <br><br>
+	<img src="${pageContext.request.contextPath}/resource/image/provider.JPG" width="50%">
 	<table>
 		<thead>
 			<tr id="color"><td colspan="3" style="font-size: 40px;">갤러리 360</td></tr>
@@ -53,7 +54,6 @@
 </div>
 
 <br>
-</div>
 
 <button type="button" class="btn btn-primary" id="savePdf" >PDF 저장</button>
 
@@ -61,13 +61,35 @@
 
 <script>
 $(document).ready(function() {
-
-	/* 	var a=3; 
-	var b=a+3;
-	$(".amount").text(b); //이런식으로 값넣고 사용가능*/
+	
+	var amount = $("#number_place", opener.document).val(); //대관개수
+	var term = $("#length_month", opener.document).val(); //사용기간(월)
+	var price = 150000;
+	
+	var all_price = (amount*term*price); //할인 들어가기전 최종금액
+	var sale = amount*(price*term*0.11); //할인 금액
+	
+	var price1; //최종금액 (세전)
+	var price2; //최종금액 (세후)
+	
+	if(term>=3){
+		price1=amount*(price*term*0.89);
+	}else{
+		price1=amount*(price*term);
+	}
+	var tax = price1/10;
+	
+	price2 = price1+tax;
+	
+	/* 계산 끝 */
+	//alert(amount+" "+term+" "+price+" "+all_price+" "+sale+" "+price1+" "+tax+" "+price2);
+	
+	$(".amount").text(amount);
+	$(".term").text(term);
+	
 	
 	$('#savePdf').click(function() { // pdf저장 button id
-		
+		$("#parentId", opener.document).val();
 	    html2canvas($('#pdfDiv')[0]).then(function(canvas) { //저장 영역 div id
 		
 	    // 캔버스를 이미지로 변환
@@ -97,7 +119,7 @@ $(document).ready(function() {
 	    doc.text(15,40,'안녕하세요'); */
 	    
 	    // 파일 저장
-	    doc.save('file-name.pdf');
+	    doc.save('갤러리360_견적서.pdf');
 
 		  
 	});
