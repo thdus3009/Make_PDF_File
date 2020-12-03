@@ -122,7 +122,7 @@ $(document).ready(function() {
 		if($("#number_place").val()==""||$("#length_month").val()==""){
 			alert("견적하기 위한 개관과 개월 수를 입력해주세요.")
 		}else{
-			var newWindow = window.open('/Make_PDF_File/NewFile2.jsp','Estimate_Form','width=750,height=900,left=1000,top=1000')			
+			var newWindow = window.open('/Make_PDF_File/NewFile2.jsp','Estimate_Form','width=750,height=900')			
 		}
 		
 		
