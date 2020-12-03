@@ -73,7 +73,11 @@
                         <input type="text" id="length_month" size="20" maxlength="3" placeholder="2" required>개월
                         <div class="estimate-btn-nb">VR갤러리 대관 비용 확인하기</div>
                     </div><!--auto-cal end-->
-                    <div class="estimate-price"><span>660,000</span>원<br/>(부가세 포함)</div>
+                    <div class="estimate-price">
+	                     <span class="price2">660,000</span>&ensp;원
+	                    <!-- <input type="text" class="price2" placeholder="2" readonly="readonly">원 -->
+	                    <br/>(부가세 포함)
+                    </div>
                 </div><!--rent-calculate end-->
                 <div id="pdfDiv"></div>
                 <div class="estimate-btn" id="savePdf">견적서 다운로드</div>
@@ -117,6 +121,38 @@
 <script type="text/javascript">
 
 $(document).ready(function() {
+	
+	/* 금액 콤마(,) 삽입 */
+	function numberWithCommas(x) {
+	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+	
+	
+	$('.estimate-btn-nb').click(function(){
+		var amount = $("#number_place").val(); //대관개수
+		var term = $("#length_month").val(); //사용기간(월)
+		var price = 150000;
+		
+		var all_price = (amount*term*price); //할인 들어가기전 최종금액
+		/* var sale = 0;  *///할인 금액
+		
+		var price1; //최종금액 (세전)
+		var price2; //최종금액 (세후)
+		
+		if(term>=3){
+			price1=amount*(price*term*0.89);
+			var sale = amount*(price*term*0.11);
+		}else{
+			price1=amount*(price*term);
+		}
+		var tax = price1/10;
+		
+		price2 = price1+tax;
+		
+		/* 계산 끝 */
+		$(".price2").text(numberWithCommas(price2));
+	});
+	
 	$('#savePdf').click(function() { // pdf저장 button id
 		
 		if($("#number_place").val()==""||$("#length_month").val()==""){
