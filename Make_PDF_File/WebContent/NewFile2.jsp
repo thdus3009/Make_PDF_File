@@ -38,7 +38,9 @@
 		<div id="title">견 적 서</div>
 		
 		<div class="info1" style="float: left; width: 275px; height: 80px;">
-			<div class="box">담 당 자: <span class="box_right">김소연 님</span></div>
+			<div class="box">담 당 자: <span class="box_right">
+				<input type="text" class="name" placeholder="이름을 입력해 주세요." style="text-align: right; border: none;"> 님</span>
+			</div>
 			<div class="box">견 적 일: <span class="box_right"><%= df.format(today) %></span></div>
 			<div class="box">유효기간: <span class="box_right">견적 후 30일 이내</span></div>
 		</div>

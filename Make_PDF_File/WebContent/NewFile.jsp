@@ -10,6 +10,8 @@
 <script src="${pageContext.request.contextPath}/resource/js/jquery.js"></script>
 <script src="${pageContext.request.contextPath}/resource/js/html2canvas.js"></script>
 <script src="${pageContext.request.contextPath}/resource/js/jspdf.min.js"></script>
+    
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resource/css/NewFile.css" />
    
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="https://www.gallery360.co.kr/resource/css/library.css?open?ver=9.10">
@@ -21,8 +23,6 @@
     <link rel="stylesheet" href="https://www.gallery360.co.kr/resource/css/partner/deco.css?open?ver=9.10">
     <link rel="stylesheet" href="https://www.gallery360.co.kr/resource/css/partner/account.css?open?ver=1.0">
     <link rel="stylesheet" href="https://www.gallery360.co.kr/resource/css/partner/vrscreen.css?open?ver=1.0">
-    
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resource/css/NewFile.css" />
 
 </head>
 <body>

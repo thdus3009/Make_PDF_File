@@ -15,6 +15,7 @@
 	 없으니까 임의의 값을 넣어서 테스트 해보기 / 버튼클릭 > 출력 -->
 	 <%Calendar cal = Calendar.getInstance();%>
 	 <p>DB에서 정보를 받아오기전에 여기에 입력해서 제대로 pdf 출력되는지 Test</p>
+	 <p>3개월이상 10프로 할인 계산은 안넣은 상태</p>
 	 날짜: <input class="date" type="text" value="<%= cal.get(Calendar.YEAR) %>년 <%= cal.get(Calendar.MONTH)+1 %>월 <%= cal.get(Calendar.DATE) %>일"></input>
 	 <br>
 	 고객명: <input class="customer" type="text"></input>
@@ -23,7 +24,7 @@
 	 <br>
 	 *수량: <input class="amount" type="text"></input>
 	 <br>
-	 단가: <input class="price" type="text"></input>
+	 단가: <input class="price" type="text" value="150000"></input>
 	 <!-- 공급가액 : 단가*수량 -->
 	 <br>
 	<button onclick="test()">PDF 출력하기</button>
@@ -83,7 +84,7 @@
 					$(".customer").val("");
 					$(".term").val("");
 					$(".amount").val("");
-					$(".price").val("");
+
 					alert("pdf다운로드 완료");
 				},
 				error : function(e){
