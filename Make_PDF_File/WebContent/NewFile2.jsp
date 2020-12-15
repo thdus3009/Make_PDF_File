@@ -148,7 +148,9 @@
 		<div style="width:100%; height:53px; border-bottom: 2px solid black; position: relative;">
 			<img class="logo" width="21%" src="${pageContext.request.contextPath}/resource/image/logo.png">
 		</div>
+		
 		<div style="float: right; font-size: 13px;">T. 070-8803-0123</div>
+		&ensp;
 	</div>
 </div>
 <br>
