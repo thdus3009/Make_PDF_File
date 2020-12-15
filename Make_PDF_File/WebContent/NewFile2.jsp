@@ -44,7 +44,36 @@
 			<div class="box">견 적 일: <span class="box_right"><%= df.format(today) %></span></div>
 			<div class="box">유효기간: <span class="box_right">견적 후 30일 이내</span></div>
 		</div>
-		<img style="float: right; margin-bottom: 25px;" width="55%" src="${pageContext.request.contextPath}/resource/image/provider.JPG">
+		
+		<!-- provider -->
+		<div style="float: right;width: 360px;color: #000080;position: relative;margin-bottom:30px;">
+			<img src="${pageContext.request.contextPath}/resource/image/seal.png" style="position: absolute;right: 2px;top: 7px;">
+			<table>
+				<tbody>
+					<tr>
+						<td rowspan="4" style="width: 30px;">공<br><br>급<br><br>자</td>
+						<td>등록번호</td>
+						<td colspan="3" style="font-size: 13px;">828-88-01007</td>
+					</tr>
+					<tr>
+						<td>상호</td>
+						<td>갤러리 360(주)</td>
+						<td style="width: 40px;">성명</td>
+						<td>신 효 미&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					</tr>
+					<tr>
+						<td>주소</td>
+						<td colspan="3">경기도 파주시 소리천로 25, 916호</td>
+					</tr>
+					<tr>
+						<td>업태</td>
+						<td>정보서비스</td>
+						<td>종목</td>
+						<td style="font-size: 10px;">소프트웨어 개발 및 공급업</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 		
 		<div style="clear: both; margin-bottom: 5px; font-size: 13px; font-weight: 700;">아래와 같이 견적 드립니다.</div>
 		
@@ -207,40 +236,44 @@ $(document).ready(function() {
 	
 	/* pdf 출력 */
 	$('#savePdf').click(function() { // pdf저장 button id
-		$("#parentId", opener.document).val();
-	    html2canvas($('#pdfDiv')[0]).then(function(canvas) { //저장 영역 div id
-			
-		    // 캔버스를 이미지로 변환
-		    var imgData = canvas.toDataURL('image/png');
-			     
-		    var imgWidth = 190; // 이미지 가로 길이(mm) / A4 기준 210mm
-		    var pageHeight = imgWidth * 1.414;  // 출력 페이지 세로 길이 계산 A4 기준
-		    var imgHeight = canvas.height * imgWidth / canvas.width;
-		    var heightLeft = imgHeight;
-		    var margin = 10; // 출력 페이지 여백설정
-		    var doc = new jsPDF('p', 'mm');
-		    var position = 0;
-		       
-		    // 첫 페이지 출력
-		    doc.addImage(imgData, 'PNG', margin, position, imgWidth, imgHeight);
-		    heightLeft -= pageHeight;
-		         
-		    // 한 페이지 이상일 경우 루프 돌면서 출력
-		    while (heightLeft >= 20) {
-		        position = heightLeft - imgHeight;
-		        doc.addPage();
-		        doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-		        heightLeft -= pageHeight;
-		    }
-		    
-	/* 	    doc.line(15,19,190,19); //시작x, 시작y, 종료x, 종료y
-		    doc.text(15,40,'안녕하세요'); */
-		    
-		    // 파일 저장
-		    doc.save('갤러리360_견적서.pdf');
+		if($(".name").val()==""){
+			alert("이름을 입력해주세요.");
+		}else{
 
-		  
-		});
+			$("#parentId", opener.document).val();
+		    html2canvas($('#pdfDiv')[0]).then(function(canvas) { //저장 영역 div id
+				
+			    // 캔버스를 이미지로 변환
+			    var imgData = canvas.toDataURL('image/png');
+				     
+			    var imgWidth = 190; // 이미지 가로 길이(mm) / A4 기준 210mm
+			    var pageHeight = imgWidth * 1.414;  // 출력 페이지 세로 길이 계산 A4 기준
+			    var imgHeight = canvas.height * imgWidth / canvas.width;
+			    var heightLeft = imgHeight;
+			    var margin = 10; // 출력 페이지 여백설정
+			    var doc = new jsPDF('p', 'mm');
+			    var position = 0;
+			       
+			    // 첫 페이지 출력
+			    doc.addImage(imgData, 'PNG', margin, position, imgWidth, imgHeight);
+			    heightLeft -= pageHeight;
+			         
+			    // 한 페이지 이상일 경우 루프 돌면서 출력
+			    while (heightLeft >= 20) {
+			        position = heightLeft - imgHeight;
+			        doc.addPage();
+			        doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+			        heightLeft -= pageHeight;
+			    }
+			    
+		/* 	    doc.line(15,19,190,19); //시작x, 시작y, 종료x, 종료y
+			    doc.text(15,40,'안녕하세요'); */
+			    
+			    // 파일 저장
+			    doc.save('갤러리360_견적서.pdf');
+			    
+			});		
+		}
 
 	});
 	
@@ -249,7 +282,7 @@ $(document).ready(function() {
 		window.self.close();
 	});
 	
-})
+});
 
 
 
